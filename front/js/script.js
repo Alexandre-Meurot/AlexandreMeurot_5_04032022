@@ -1,3 +1,4 @@
+
 // liens vers API = http://localhost:3000/api/products
 
 const items = document.getElementById("items");
@@ -5,17 +6,19 @@ const items = document.getElementById("items");
 getProducts();
 displayProducts();
 
+// fonction qui récupère les données de l'API => Json
 async function getProducts() {
     let data = await fetch("http://localhost:3000/api/products");
     return await data.json();
 }
 
+// fonction qui affiche tous les produits dans le DOM
 async function displayProducts() {
     let result = await getProducts()
     .then(function (dataProduct) {
         const products = dataProduct;
         console.log(products);
-    
+        
         for (let i = 0; i < products.length; i++) {
       
             // création élément lien + injecte data
