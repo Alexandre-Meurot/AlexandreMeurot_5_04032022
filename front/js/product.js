@@ -88,7 +88,10 @@ btnAddToCart.addEventListener('click', (e) => {
         altImgProduct : product.altTxt
     };
 
+    // variable contenant le Local Storage sours forme de tableau
     localStorageProducts = [];
+
+    // ajout de l'objet dans le Local Storage
     localStorageProducts.push(selectedProduct);
     localStorage.setItem('product', JSON.stringify(localStorageProducts));
     console.table(localStorageProducts)
