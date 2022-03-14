@@ -91,9 +91,17 @@ btnAddToCart.addEventListener('click', (e) => {
     // variable contenant le Local Storage sours forme de tableau
     localStorageProducts = [];
 
+    // message de confirmation du panier
+    function confirmation() {
+        if(window.confirm(
+            `Vous venez d'ajouter ${selectedQuantity} * ${product.name} ( ${selectedColor} ) dans votre panier !
+            Pour consulter votre panier, cliquez sur OK`
+        )) {window.location.href ="cart.html";}
+    }
+
     // ajout de l'objet dans le Local Storage
     localStorageProducts.push(selectedProduct);
     localStorage.setItem('product', JSON.stringify(localStorageProducts));
     console.table(localStorageProducts)
-
-})
+    confirmation()
+});
