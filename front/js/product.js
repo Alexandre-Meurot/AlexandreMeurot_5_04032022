@@ -40,17 +40,22 @@ function getProduct() {
 // fonction qui affiche le produit dans le DOM
 function displayProduct(product) {
     
+    // création de l'élément et affichage de l'image du produit dans le DOM
     let productImg = document.createElement('img');
     img.appendChild(productImg);
     productImg.src = product.imageUrl;
     productImg.alt = product.altTxt;
 
+    // affichage du nom du produit dans le DOM
     title.innerHTML = product.name;
 
+    // affichage du prix du produit dans le DOM
     price.innerHTML = product.price;
 
+    // affichage de la description du produit dans le DOM
     description.innerHTML = product.description;
 
+    // création de l'élément et affichage des otpions de couleurs dans le DOM
     for (let colors of product.colors) {
         let optionColors = document.createElement('option');
         selectColors.appendChild(optionColors);
