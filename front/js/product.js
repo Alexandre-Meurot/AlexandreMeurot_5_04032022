@@ -3,6 +3,7 @@ const img = document.querySelector('.item__img');
 const title = document.getElementById('title');
 const price = document.getElementById('price');
 const description = document.getElementById('description');
+const selectColors = document.getElementById('colors');
 
 
 // Méthode pour récupérer l'Id de l'URL de la page actuelle
@@ -36,7 +37,7 @@ function getProduct() {
     })
 }
 
-// fonction qui affiche tous les produits dans le DOM
+// fonction qui affiche le produit dans le DOM
 function displayProduct(product) {
     
     let productImg = document.createElement('img');
@@ -49,5 +50,12 @@ function displayProduct(product) {
     price.innerHTML = product.price;
 
     description.innerHTML = product.description;
+
+    for (let colors of product.colors) {
+        let optionColors = document.createElement('option');
+        selectColors.appendChild(optionColors);
+        optionColors.value = colors;
+        optionColors.innerHTML = colors;
+    }
 }
 
