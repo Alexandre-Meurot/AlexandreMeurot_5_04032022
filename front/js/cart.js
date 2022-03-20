@@ -65,6 +65,13 @@ function getCart() {
             let productContentSettingsDiv = document.createElement('div');
             productContentDiv.appendChild(productContentSettingsDiv);
             productContentSettingsDiv.className ='cart__item__content__settings';
+
+            //création et insertion de l'élément div : cart__item__content__settings__quantity
+            let productContentSettingsQuantityDiv = document.createElement('div');
+            productContentSettingsDiv.appendChild(productContentSettingsQuantityDiv);
+            productContentSettingsQuantityDiv.className ='cart__item__content__settings__quantity';
+
+            
         }
     }
 }
