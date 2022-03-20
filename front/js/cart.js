@@ -46,10 +46,16 @@ function getCart() {
             productContentDiv.appendChild(productContentDescriptionDiv);
             productContentDescriptionDiv.classList = 'cart__item__content__description';
 
-            // création et insertion de l'élément h2 + nom du produit
+            // création et insertion de l'élément h2 + nom produit
             let productTitle = document.createElement('h2');
             productContentDescriptionDiv.appendChild(productTitle);
             productTitle.innerHTML = itemLocalStorage[item].nameItem;
+
+            // création et insertion de l'élément p + couleur produit
+            let productColor = document.createElement('p');
+            productContentDescriptionDiv.appendChild(productColor);
+            productColor.innerHTML = itemLocalStorage[item].colorItem;
+
         }
     }
 }
