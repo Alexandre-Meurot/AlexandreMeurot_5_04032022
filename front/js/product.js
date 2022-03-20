@@ -95,11 +95,31 @@ function addToCart(product){
                 altImgItem: product.altTxt
             };
 
-            let ItemLocalStorage = JSON.parse(localStorage.getItem("produit"));
+            let itemLocalStorage = JSON.parse(localStorage.getItem("item"));
         
-            // variable contenant le Local Storage sours forme de tableau
-            ItemLocalStorage = [];
-        
+            // Vérifie si le panier possède déjà un article
+            if (itemLocalStorage) {
+
+                const findCartItem = itemLocalStorage.find(
+                    (itemFind) => itemFind.idItem === id && itemFind.colorItem === selectedColor
+                );
+                
+                // Vérifie si le même produit est déjà dans le panier et incrémente la quantité
+                if(findCartItem) {
+                    let newQuantity = 
+                    parseInt(item.quantityItem) + parseInt(findCartItem.quantityItem);
+                    findCartItem.quantityItem = newQuantity;
+                    localStorage.setItem('item', JSON.stringify(itemLocalStorage));
+                    console.log(itemLocalStorage);
+                    confirmation();
+                } else {
+
+                }
+
+
+
+            }
+           
             // message de confirmation du panier
             function confirmation() {
                 if(window.confirm(
@@ -108,10 +128,12 @@ function addToCart(product){
                 )) {window.location.href ="cart.html";}
             }
         
+            // variable contenant le Local Storage sours forme de tableau
+            itemLocalStorage = [];
             // ajout de l'objet dans le Local Storage
-            ItemLocalStorage.push(item);
-            localStorage.setItem('product', JSON.stringify(ItemLocalStorage));
-            console.log(ItemLocalStorage)
+            itemLocalStorage.push(item);
+            localStorage.setItem('product', JSON.stringify(itemLocalStorage));
+            console.log(itemLocalStorage)
             confirmation()
         }
     
