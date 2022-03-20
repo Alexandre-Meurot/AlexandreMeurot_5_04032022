@@ -17,7 +17,6 @@ let id = search_params.get('id');
 // ---------------------------------------------------------
 
 getProduct();
-addToCart();
 
 // ---------------------------------------------------------
 // fonction qui récupère les données de l'API => Json
@@ -29,7 +28,7 @@ function getProduct() {
     })
 
     .then(async function (dataProduct) {
-        product = await dataProduct;
+        var product = await dataProduct;
         console.table(dataProduct);
         if (product) {
             displayProduct(product)
@@ -66,6 +65,8 @@ function displayProduct(product) {
         optionColors.value = colors;
         optionColors.innerHTML = colors;
     }
+
+    addToCart(product);
 };
 
 // ---------------------------------------------------------
@@ -83,19 +84,21 @@ function addToCart(product){
             let selectedQuantity = quantity.value;
             
             // objet contenant toutes les infos du produit selectionné
-            let selectedProduct = {
-                idItem : id,
-                nameItem : product.name,
-                colorItem : selectedColor,
-                quantityItem : selectedQuantity,
-                priceItem : product.price,
-                descritpionItem : product.description,
-                imgItem : product.imageUrl,
-                altImgItem : product.altTxt
+            let item = {
+                idItem: id,
+                nameItem: product.name,
+                colorItem: selectedColor,
+                quantityItem: selectedQuantity,
+                priceItem: product.price,
+                descritpionItem: product.description,
+                imgItem: product.imageUrl,
+                altImgItem: product.altTxt
             };
+
+            let ItemLocalStorage = JSON.parse(localStorage.getItem("produit"));
         
             // variable contenant le Local Storage sours forme de tableau
-            localStorageProducts = [];
+            ItemLocalStorage = [];
         
             // message de confirmation du panier
             function confirmation() {
@@ -106,9 +109,9 @@ function addToCart(product){
             }
         
             // ajout de l'objet dans le Local Storage
-            localStorageProducts.push(selectedProduct);
-            localStorage.setItem('product', JSON.stringify(localStorageProducts));
-            console.table(localStorageProducts)
+            ItemLocalStorage.push(item);
+            localStorage.setItem('product', JSON.stringify(ItemLocalStorage));
+            console.log(ItemLocalStorage)
             confirmation()
         }
     
