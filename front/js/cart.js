@@ -66,7 +66,7 @@ function getCart() {
             productContentDiv.appendChild(productContentSettingsDiv);
             productContentSettingsDiv.className ='cart__item__content__settings';
 
-            //création et insertion de l'élément div : cart__item__content__settings__quantity
+            // création et insertion de l'élément div : cart__item__content__settings__quantity
             let productContentSettingsQuantityDiv = document.createElement('div');
             productContentSettingsDiv.appendChild(productContentSettingsQuantityDiv);
             productContentSettingsQuantityDiv.className ='cart__item__content__settings__quantity';
@@ -76,16 +76,28 @@ function getCart() {
             productContentSettingsQuantityDiv.appendChild(productStringQuantity);
             productStringQuantity.innerHTML = 'Quantité : ';
 
-            // insertion de la quantité
+            // création insertion de l'input + la quantité du produit
             let productQuantity = document.createElement('input');
             productContentSettingsQuantityDiv.appendChild(productQuantity);
             productQuantity.className ='itemQuantity';
             productQuantity.value = itemLocalStorage[item].quantityItem;
-            productQuantity.setAttribute('type', 'number')
-            productQuantity.setAttribute('min', '1')
-            productQuantity.setAttribute('max', '100')
-            productQuantity.setAttribute('name', 'itemQuantity')
+            productQuantity.setAttribute('type', 'number');
+            productQuantity.setAttribute('min', '1');
+            productQuantity.setAttribute('max', '100');
+            productQuantity.setAttribute('name', 'itemQuantity');
 
+            // création et insertion de l'élément div : cart__item__content__settings__delete
+            let productContentSettingsDeleteDiv = document.createElement('div');
+            productContentSettingsDiv.appendChild(productContentSettingsDeleteDiv);
+            productContentSettingsDeleteDiv.className = 'cart__item__content__settings__delete';
+
+            // création insertion de l'élément p : suprimmer
+            let productDelete = document.createElement('p');
+            productContentSettingsDeleteDiv.appendChild(productDelete);
+            productDelete.className = 'deleteItem';
+            productDelete.innerHTML = 'Supprimer';
+            
+            
         }   
     }
 }
