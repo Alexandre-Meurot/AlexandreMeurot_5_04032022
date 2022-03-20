@@ -39,12 +39,12 @@ function getCart() {
             // création et insertion de l'élément div : cart__item__content
             let productContentDiv = document.createElement('div');
             productArticle.appendChild(productContentDiv);
-            productContentDiv.classList = 'cart__item__content';
+            productContentDiv.className = 'cart__item__content';
 
             // création et insertion de l'élément div : cart__item__content__description
             let productContentDescriptionDiv = document.createElement('div');
             productContentDiv.appendChild(productContentDescriptionDiv);
-            productContentDescriptionDiv.classList = 'cart__item__content__description';
+            productContentDescriptionDiv.className = 'cart__item__content__description';
 
             // création et insertion de l'élément h2 + nom produit
             let productTitle = document.createElement('h2');
@@ -60,6 +60,11 @@ function getCart() {
             let productPrice = document.createElement('p');
             productContentDescriptionDiv.appendChild(productPrice);
             productPrice.innerHTML = itemLocalStorage[item].priceItem + ' €';
+
+            // création et insertion de l'élément div : cart__item__content__settings
+            let productContentSettingsDiv = document.createElement('div');
+            productContentDiv.appendChild(productContentSettingsDiv);
+            productContentSettingsDiv.className ='cart__item__content__settings';
         }
     }
 }
