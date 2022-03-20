@@ -41,7 +41,10 @@ function getCart() {
             productArticle.appendChild(productContentDiv);
             productContentDiv.classList = 'cart__item__content';
 
-
+            // création et insertion de l'élément div : cart__item__content__description
+            let productContentDescriptionDiv = document.createElement('div');
+            productContentDiv.appendChild(productContentDescriptionDiv);
+            productContentDescriptionDiv.classList = 'cart__item__content__description';
         }
     }
 }
