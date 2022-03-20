@@ -25,16 +25,22 @@ function getCart() {
             productArticle.setAttribute('data-id', itemLocalStorage[item].idItem);
             productArticle.setAttribute('data-color', itemLocalStorage[item].colorItem);
 
-            // création et insertion de l'élément div
+            // création et insertion de l'élément div : cart__item__img
             let productImgDiv = document.createElement('div');
             productArticle.appendChild(productImgDiv);
-            productArticle.className = 'cart__item__img';
+            productImgDiv.className = 'cart__item__img';
 
             // création et insertion de l'image
             let productImg = document.createElement('img');
             productImgDiv.appendChild(productImg);
             productImg.src = itemLocalStorage[item].imgItem;
             productImg.alt = itemLocalStorage[item].altImgItem;
+
+            // création et insertion de l'élément div : cart__item__content
+            let productContentDiv = document.createElement('div');
+            productArticle.appendChild(productContentDiv);
+            productContentDiv.classList = 'cart__item__content';
+
 
         }
     }
