@@ -94,7 +94,16 @@ function addToCart(product){
                 imgItem: product.imageUrl,
                 altImgItem: product.altTxt
             };
+            
+            // message de confirmation du panier
+            function confirmation() {
+                if(window.confirm(
+                    `Vous venez d'ajouter ${selectedQuantity} * ${product.name} ( ${selectedColor} ) dans votre panier !
+                    Pour consulter votre panier, cliquez sur OK`
+                )) {window.location.href ="cart.html";}
+            }
 
+            // Initialisation du localStorage
             let itemLocalStorage = JSON.parse(localStorage.getItem("item"));
         
             // Vérifie si le panier possède déjà un article
@@ -112,31 +121,26 @@ function addToCart(product){
                     localStorage.setItem('item', JSON.stringify(itemLocalStorage));
                     console.log(itemLocalStorage);
                     confirmation();
+
+                // Si le produit dans le panier n'est pas le même
                 } else {
-
+                    itemLocalStorage.push(item);
+                    localStorage.setItem("item", JSON.stringify(itemLocalStorage));
+                    console.log(itemLocalStorage);
+                    confirmation()
                 }
-
-
-
+            
+            // Si le panier est vide
+            } else {
+                // variable contenant le Local Storage sours forme de tableau
+                itemLocalStorage = [];
+                // ajout de l'objet dans le Local Storage
+                itemLocalStorage.push(item);
+                localStorage.setItem('product', JSON.stringify(itemLocalStorage));
+                console.log(itemLocalStorage)
+                confirmation()
             }
-           
-            // message de confirmation du panier
-            function confirmation() {
-                if(window.confirm(
-                    `Vous venez d'ajouter ${selectedQuantity} * ${product.name} ( ${selectedColor} ) dans votre panier !
-                    Pour consulter votre panier, cliquez sur OK`
-                )) {window.location.href ="cart.html";}
-            }
-        
-            // variable contenant le Local Storage sours forme de tableau
-            itemLocalStorage = [];
-            // ajout de l'objet dans le Local Storage
-            itemLocalStorage.push(item);
-            localStorage.setItem('product', JSON.stringify(itemLocalStorage));
-            console.log(itemLocalStorage)
-            confirmation()
         }
-    
     });
 }
 
