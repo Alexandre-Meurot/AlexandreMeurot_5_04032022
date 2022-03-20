@@ -45,6 +45,11 @@ function getCart() {
             let productContentDescriptionDiv = document.createElement('div');
             productContentDiv.appendChild(productContentDescriptionDiv);
             productContentDescriptionDiv.classList = 'cart__item__content__description';
+
+            // création et insertion de l'élément h2 + nom du produit
+            let productTitle = document.createElement('h2');
+            productContentDescriptionDiv.appendChild(productTitle);
+            productTitle.innerHTML = itemLocalStorage[item].nameItem;
         }
     }
 }
