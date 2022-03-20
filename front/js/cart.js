@@ -71,8 +71,22 @@ function getCart() {
             productContentSettingsDiv.appendChild(productContentSettingsQuantityDiv);
             productContentSettingsQuantityDiv.className ='cart__item__content__settings__quantity';
 
-            
-        }
+            // création et insertion de l'élément p + phrase
+            let productStringQuantity = document.createElement('p');
+            productContentSettingsQuantityDiv.appendChild(productStringQuantity);
+            productStringQuantity.innerHTML = 'Quantité : ';
+
+            // insertion de la quantité
+            let productQuantity = document.createElement('input');
+            productContentSettingsQuantityDiv.appendChild(productQuantity);
+            productQuantity.className ='itemQuantity';
+            productQuantity.value = itemLocalStorage[item].quantityItem;
+            productQuantity.setAttribute('type', 'number')
+            productQuantity.setAttribute('min', '1')
+            productQuantity.setAttribute('max', '100')
+            productQuantity.setAttribute('name', 'itemQuantity')
+
+        }   
     }
 }
 
