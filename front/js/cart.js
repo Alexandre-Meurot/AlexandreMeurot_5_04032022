@@ -56,6 +56,10 @@ function getCart() {
             productContentDescriptionDiv.appendChild(productColor);
             productColor.innerHTML = itemLocalStorage[item].colorItem;
 
+            // création et insertion de l'élément p + prix produit
+            let productPrice = document.createElement('p');
+            productContentDescriptionDiv.appendChild(productPrice);
+            productPrice.innerHTML = itemLocalStorage[item].priceItem + ' €';
         }
     }
 }
