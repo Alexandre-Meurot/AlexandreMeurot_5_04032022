@@ -103,3 +103,19 @@ function getCart() {
 }
 
 getCart();
+
+function totalPrice() {
+    
+    let itemsQuantity = document.getElementsByClassName('itemQuantity')
+    let quantityLength = itemsQuantity.length;
+    let quantityTotal = 0;
+
+    for (let i = 0 ; i < quantityLength ; i++) {
+        quantityTotal += itemsQuantity[i].valueAsNumber;
+    }
+
+    console.log(quantityTotal);
+
+}
+
+totalPrice();
