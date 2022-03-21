@@ -105,7 +105,7 @@ function getCart() {
 getCart();
 
 // fonction qui calcul le prix total
-function totalPrice() {
+function totals() {
     
     // calcul et affichage de la quantité total d'articles dans le panier
     let itemsQuantity = document.getElementsByClassName('itemQuantity')
@@ -119,7 +119,7 @@ function totalPrice() {
     let itemTotalQuantity = document.getElementById('totalQuantity');
     itemTotalQuantity.innerHTML = quantityTotal;
 
-    
+
     // calcul et affichage du prix total dans le panier
     let priceTotal = 0
 
@@ -133,4 +133,33 @@ function totalPrice() {
 
 }
 
-totalPrice();
+totals();
+
+
+// Fonction qui permet de changer la quantité d'un produit dans le DOM et dans le LocalStorage
+function changeQuantity() {
+
+    let itemQuantity = document.getElementsByClassName('itemQuantity');
+
+    for (let i = 0 ; i < itemQuantity.length ; i++) {
+
+        itemQuantity[i].addEventListener('change', (e) => {
+            e.preventDefault();
+
+            let qttLocalStorage = itemLocalStorage[i].quantityItem;
+            let qttValue = itemQuantity[i].valueAsNumber;
+
+            let resultFind = itemLocalStorage.find((item) => item.qttValue !== qttLocalStorage);
+            
+            resultFind.quantityItem = qttValue;
+            itemLocalStorage[i].quantityItem =resultFind.quantityItem;
+
+            localStorage.setItem('item', JSON.stringify(itemLocalStorage));
+
+            location.reload();
+
+        })
+    }
+}
+
+changeQuantity();
