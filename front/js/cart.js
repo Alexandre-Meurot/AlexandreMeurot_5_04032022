@@ -231,7 +231,7 @@ function getForm() {
         validEmail(this);
     });
 
-    //validation du prénom
+    // validation du prénom
     const validFirstName = function(inputFirstName) {
         let firstNameErrorMsg = inputFirstName.nextElementSibling;
 
@@ -242,7 +242,7 @@ function getForm() {
         }
     };
 
-    //validation du nom
+    // validation du nom
     const validLastName = function(inputLastName) {
         let lastNameErrorMsg = inputLastName.nextElementSibling;
 
@@ -253,7 +253,7 @@ function getForm() {
         }
     };
 
-    //validation de l'adresse
+    // validation de l'adresse
     const validAddress = function(inputAddress) {
         let addressErrorMsg = inputAddress.nextElementSibling;
 
@@ -264,7 +264,7 @@ function getForm() {
         }
     };
 
-    //validation de la ville
+    // validation de la ville
     const validCity = function(inputCity) {
         let cityErrorMsg = inputCity.nextElementSibling;
 
@@ -275,7 +275,7 @@ function getForm() {
         }
     };
 
-    //validation de l'adresse mail
+    // validation de l'adresse mail
     const validEmail = function(inputEmail) {
         let emailErrorMsg = inputEmail.nextElementSibling;
 
@@ -288,3 +288,70 @@ function getForm() {
 }
 
 getForm();
+
+
+// Envoi des informations client saisi + id produit => serveur
+function postForm() {
+
+    const btnSubmit = document.getElementById('order');
+
+    // écoute le panier au click sur le bouton 'commander'
+    btnSubmit.addEventListener('click' , (e) => {
+
+        let inputFirstName = document.getElementById('firstName');
+        let inputLastName = document.getElementById('lastName');
+        let inputAddress = document.getElementById('address');
+        let inputCity = document.getElementById('city');
+        let inputEmail = document.getElementById('email');
+
+        // Objet contenant les infos clients 
+        const contact = {
+            firstName: inputFirstName.value,
+            lastName: inputLastName.value,
+            address: inputAddress.value,
+            city: inputCity.value,
+            email: inputEmail.value,
+        };
+        
+        // Array contenant les id des produits depuis le localStorage
+        let products = [];
+        for (let i = 0 ; i < itemLocalStorage.length ; i++) {
+            products.push(itemLocalStorage[i].idItem);
+        }
+
+        // Objet contenant les infos clients + les id produits
+        const order = {
+            contact,
+            products,
+        }
+
+        // Méthode d'envoie des données de 'order' sur le serveur
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(order),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        };
+
+        fetch('http://localhost:3000/api/products/order', options)
+        .then((response) => response.json())
+        .then((data) => {
+            localStorage.setItem('orderId', data.orderId);
+            
+            // message de confirmation avant de passer sur la page de confirmation
+            const confirm = window.confirm(`Vous êtes sur le point de valider votre commande. Cliquez sur OK pour continuer`);
+            if(confirm) {
+                const url = 'confirmation.html?id='+ data.orderId;
+                document.location.href = url;
+            }
+            
+        })
+        .catch((err) => {
+            alert ('Problème avec fetch : ' + err.message);
+        });
+    })
+}
+
+postForm();
