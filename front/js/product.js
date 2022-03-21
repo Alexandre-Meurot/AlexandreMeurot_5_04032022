@@ -36,7 +36,7 @@ function getProduct() {
             alert('erreur, pas de produit sélectionner !')
         }
     })
-}
+};
 
 // ---------------------------------------------------------
 // fonction qui affiche le produit dans le DOM
@@ -101,7 +101,7 @@ function addToCart(product){
                     `Vous venez d'ajouter ${selectedQuantity} * ${product.name} ( ${selectedColor} ) dans votre panier !
                     Pour consulter votre panier, cliquez sur OK`
                 )) {window.location.href ="cart.html";}
-            }
+            };
 
             // Initialisation du localStorage
             let itemLocalStorage = JSON.parse(localStorage.getItem("item"));
@@ -128,7 +128,7 @@ function addToCart(product){
                     localStorage.setItem("item", JSON.stringify(itemLocalStorage));
                     console.log(itemLocalStorage);
                     confirmation()
-                }
+                };
             
             // Si le panier est vide
             } else {

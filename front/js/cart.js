@@ -105,7 +105,7 @@ function getCart() {
             
         }   
     }
-}
+};
 
 getCart();
 
@@ -136,7 +136,7 @@ function totals() {
     itemTotalPrice.innerHTML = priceTotal;
     
 
-}
+};
 
 totals();
 
@@ -192,7 +192,7 @@ function deleteItem() {
             }  
         })
     }
-}
+};
 
 deleteItem();
 
@@ -285,7 +285,7 @@ function getForm() {
             emailErrorMsg.innerHTML = 'Veuillez renseigner votre email.';
         }
     };
-}
+};
 
 getForm();
 
@@ -317,13 +317,13 @@ function postForm() {
         let products = [];
         for (let i = 0 ; i < itemLocalStorage.length ; i++) {
             products.push(itemLocalStorage[i].idItem);
-        }
+        };
 
         // Objet contenant les infos clients + les id produits
         const order = {
             contact,
             products,
-        }
+        };
 
         // Méthode d'envoie des données de 'order' sur le serveur
         const options = {
@@ -352,6 +352,6 @@ function postForm() {
             alert ('Problème avec fetch : ' + err.message);
         });
     })
-}
+};
 
 postForm();

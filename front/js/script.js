@@ -10,7 +10,7 @@ displayProducts();
 async function getProducts() {
     let data = await fetch("http://localhost:3000/api/products");
     return await data.json();
-}
+};
 
 // fonction qui affiche tous les produits dans le DOM
 async function displayProducts() {
@@ -49,4 +49,4 @@ async function displayProducts() {
             productDescription.innerHTML = dataProduct[i].description;
         }
     });
-}
+};
