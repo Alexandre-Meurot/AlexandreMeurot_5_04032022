@@ -104,8 +104,10 @@ function getCart() {
 
 getCart();
 
+// fonction qui calcul le prix total
 function totalPrice() {
     
+    // calcul et affichage de la quantité total d'articles dans le panier
     let itemsQuantity = document.getElementsByClassName('itemQuantity')
     let quantityLength = itemsQuantity.length;
     let quantityTotal = 0;
@@ -114,7 +116,20 @@ function totalPrice() {
         quantityTotal += itemsQuantity[i].valueAsNumber;
     }
 
-    console.log(quantityTotal);
+    let itemTotalQuantity = document.getElementById('totalQuantity');
+    itemTotalQuantity.innerHTML = quantityTotal;
+
+    
+    // calcul et affichage du prix total dans le panier
+    let priceTotal = 0
+
+    for (let i = 0 ; i < quantityLength ; i++) {
+        priceTotal += (itemsQuantity[i].valueAsNumber * itemLocalStorage[i].priceItem)
+    }
+    
+    let itemTotalPrice = document.getElementById('totalPrice');
+    itemTotalPrice.innerHTML = priceTotal;
+    
 
 }
 
