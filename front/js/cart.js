@@ -59,7 +59,12 @@ function getCart() {
             // création et insertion de l'élément p + prix produit
             let productPrice = document.createElement('p');
             productContentDescriptionDiv.appendChild(productPrice);
-            productPrice.innerHTML = itemLocalStorage[item].priceItem + ' €';
+            productPrice.innerHTML = 'Prix Unitaire : ' + itemLocalStorage[item].priceItem + ' €';
+
+            // création et insertion d'un l'élément p + calcul du sous-total
+            let productPriceTotal = document.createElement('p');
+            productContentDescriptionDiv.appendChild(productPriceTotal);
+            productPriceTotal.innerHTML = 'Sous-Total : ' + (itemLocalStorage[item].priceItem * itemLocalStorage[item].quantityItem);
 
             // création et insertion de l'élément div : cart__item__content__settings
             let productContentSettingsDiv = document.createElement('div');
@@ -136,7 +141,7 @@ function totals() {
 totals();
 
 
-// Fonction qui permet de changer la quantité d'un produit dans le DOM et dans le LocalStorage
+// fonction qui permet de modifier la quantité d'un produit dans le DOM et dans le LocalStorage
 function changeQuantity() {
 
     let itemQuantity = document.getElementsByClassName('itemQuantity');
