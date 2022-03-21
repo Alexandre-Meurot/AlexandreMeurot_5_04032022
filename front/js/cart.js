@@ -165,6 +165,33 @@ function changeQuantity() {
 
         })
     }
-}
+};
 
 changeQuantity();
+
+
+// fonction qui supprime un proquit lors du click + message de confirmation
+function deleteItem() {
+
+    let deleteButton = document.getElementsByClassName('deleteItem');
+
+    for (let i = 0 ; i < deleteButton.length ; i++) {
+
+        deleteButton[i].addEventListener('click', (e) => {
+            e.preventDefault();
+
+            let deleteId = itemLocalStorage[i].idItem;
+            let deleteColor = itemLocalStorage[i].colorItem;
+
+            // Si confirmation alors supression de l'article
+            if(window.confirm(`Voulez-vous vraiment supprimer ce produit du panier ? Cliquez sur OK pour confirmer`)) {
+
+                itemLocalStorage = itemLocalStorage.filter(item => item.idItem !== deleteId || item.colorItem !== deleteColor);
+                localStorage.setItem('item', JSON.stringify(itemLocalStorage));
+                location.reload();
+            }  
+        })
+    }
+}
+
+deleteItem();
