@@ -338,15 +338,7 @@ function postForm() {
         fetch('http://localhost:3000/api/products/order', options)
         .then((response) => response.json())
         .then((data) => {
-            localStorage.setItem('orderId', data.orderId);
-            
-            // message de confirmation avant de passer sur la page de confirmation
-            const confirm = window.confirm(`Vous êtes sur le point de valider votre commande. Cliquez sur OK pour continuer`);
-            if(confirm) {
-                const url = 'confirmation.html?id='+ data.orderId;
-                document.location.href = url;
-            }
-            
+            localStorage.setItem('orderId', data.orderId);         
         })
         .catch((err) => {
             alert ('Problème avec fetch : ' + err.message);
