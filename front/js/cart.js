@@ -325,7 +325,7 @@ function postForm() {
             products,
         };
 
-        // Méthode d'envoie des données de 'order' sur le serveur
+        // Option de la méthode de POST avec fetch
         const options = {
             method: 'POST',
             body: JSON.stringify(order),
@@ -335,10 +335,15 @@ function postForm() {
             },
         };
 
+        // Appel de l'API pour POST les informations 'order'
         fetch('http://localhost:3000/api/products/order', options)
-        .then((response) => response.json())
+        .then((response) => {
+            return response.json();
+        })
         .then((data) => {
+            // Envoie de orderId vers le Local Storage
             localStorage.setItem('orderId', data.orderId);
+            // Renvoie vers la page de confirmation
             const url = 'confirmation.html?id='+ data.orderId;
             document.location.href = url;
         })
