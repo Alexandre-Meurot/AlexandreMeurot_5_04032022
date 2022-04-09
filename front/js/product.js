@@ -8,19 +8,20 @@ const quantity = document.getElementById('quantity');
 const btnAddToCart = document.getElementById('addToCart');
 
 // ---------------------------------------------------------
-// Méthode pour récupérer l'Id de l'URL de la page actuelle
 
+// Méthode pour récupérer l'Id de l'URL de la page actuelle
 let url = window.location.href;
 let urlProduct = new URL(url);
 let search_params = new URLSearchParams(urlProduct.search); 
 let id = search_params.get('id');
+
 // ---------------------------------------------------------
 
 getProduct();
 
 // ---------------------------------------------------------
-// fonction qui récupère les données de l'API => Json
 
+// fonction qui récupère les données de l'API => Json
 function getProduct() {
     fetch("http://localhost:3000/api/products/" + id)
     .then((data) => {
@@ -39,8 +40,8 @@ function getProduct() {
 };
 
 // ---------------------------------------------------------
-// fonction qui affiche le produit dans le DOM
 
+// fonction qui affiche le produit dans le DOM
 function displayProduct(product) {
     
     // création de l'élément et affichage de l'image du produit dans le DOM
@@ -100,7 +101,7 @@ function addToCart(product){
                 if(window.confirm(
                     `Vous venez d'ajouter ${selectedQuantity} * ${product.name} ( ${selectedColor} ) dans votre panier !
                     Pour consulter votre panier, cliquez sur OK`
-                )) {window.location.href ="cart.html";}
+                )) {window.location.href ="cart.html"}
             };
 
             // Initialisation du localStorage
@@ -140,6 +141,8 @@ function addToCart(product){
                 console.log(itemLocalStorage)
                 confirmation()
             }
+        } else {
+            window.alert('Merci de selectionner une couleur et une quantité')
         }
     });
 }

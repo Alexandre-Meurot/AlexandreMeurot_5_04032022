@@ -1,4 +1,3 @@
-
 // liens vers API = http://localhost:3000/api/products
 
 const items = document.getElementById("items");
@@ -14,7 +13,7 @@ async function getProducts() {
 
 // fonction qui affiche tous les produits dans le DOM
 async function displayProducts() {
-    let result = await getProducts()
+    await getProducts()
     .then(function (dataProduct) {
         const products = dataProduct;
         console.log(products);
