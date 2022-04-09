@@ -338,7 +338,9 @@ function postForm() {
         fetch('http://localhost:3000/api/products/order', options)
         .then((response) => response.json())
         .then((data) => {
-            localStorage.setItem('orderId', data.orderId);         
+            localStorage.setItem('orderId', data.orderId);
+            const url = 'confirmation.html?id='+ data.orderId;
+            document.location.href = url;
         })
         .catch((err) => {
             alert ('Problème avec fetch : ' + err.message);
