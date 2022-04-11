@@ -1,14 +1,12 @@
-// fonction qui récupère l'ID grâce à l'URL de la page
-function displayOrderId() {
-    
-    const id = new URL(window.location.href).searchParams.get("id");
-    const orderId = document.getElementById('orderId');
+// recuperation du lien et de l'orderId
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let orderId = urlParams.get("orderId");
 
-    console.log(id);
-    orderId.innerHTML = id;
+//insertion de l'orderId dans l'HTML
+let orderNumber = document.querySelector("#orderId");
+orderNumber.innerHTML = orderId;
 
-    // nettoie le localStorage
-    localStorage.clear();
-};
-
-displayOrderId();
+//suppression du localStorage
+let removeStorage = window.localStorage;
+removeStorage.clear();
