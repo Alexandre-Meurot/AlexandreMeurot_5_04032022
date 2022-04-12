@@ -13,12 +13,26 @@ let adressRegex = new RegExp(
   "^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+"
 );
 
-getCart();
-totals();
-changeQuantity();
-deleteItem();
-getForm();
-postForm();
+// fetch afin de récupèrer le prix dans l'API
+fetch("http://localhost:3000/api/products")
+  .then((res) => res.json())
+  .then((data) => {
+    if (itemLocalStorage) {
+      for (item of itemLocalStorage) {
+        const product = data.find((data) => data._id === item.idItem);
+        if (product) {
+          item.priceItem = product.price;
+        }
+      }
+    }
+    getCart();
+    totals();
+    changeQuantity();
+    deleteItem();
+    getForm();
+    postForm();
+  })
+  .catch((error) => console.error(error));
 
 // fonction qui récupère les données du localStorage
 function getCart() {
